@@ -10,8 +10,17 @@ int main()
 {
     float radio, perimetro, area;
 
-    printf("Ingrese el radio del circulo: ");
-    scanf("%f", &radio);
+    do
+    {
+        printf("Ingrese el radio del circulo: ");
+        scanf("%f", &radio);
+        if (radio <= 0)
+            printf("El radio debe ser mayor a 0\n");
+        else
+            break;
+        
+    } while (1);
+    
 
     perimetro = 2 * 3.1416 * radio;
     area = 3.1416 * radio * radio;
