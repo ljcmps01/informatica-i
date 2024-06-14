@@ -7,14 +7,20 @@ SRC_DIR = src
 
 ## Toolchain
 CC = gcc
+RM = rm
+CPPCHECK = cppcheck
+
+
+# Flags
 CFLAGS = -Wall -Wextra
 LDFLAGS = -O
-RM = rm
 
 ## Codigo
 TARGET = $(BIN_DIR)/$(SRC)
 SRC_FILE = $(addprefix $(SRC_DIR)/, $(SRC).c)
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC).o)
+
+SOURCES := $(shell find $(SRC_DIR) -name '*.c')
 
 # Reglas
 $(TARGET) : $(OBJ)
@@ -27,7 +33,7 @@ $(OBJ) : $(SRC_FILE)
 
 
 # Phonies
-.PHONY:	all clean run print
+.PHONY:	all clean run print cppcheck
 
 all: $(TARGET)
 
@@ -38,6 +44,12 @@ clean:
 	rm -rf $(BUILD_DIR)/*
 
 
+cppcheck: 
+	@$(CPPCHECK) --enable=all --error-exitcode=1\
+	--inline-suppr \
+	--suppress=missingIncludeSystem \
+	$(SOURCES) \
+	--check-config
 
 
 
