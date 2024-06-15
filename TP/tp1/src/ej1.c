@@ -12,22 +12,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
-{
+int main() {
 
-  float numero1,numero2;
+  float numero1, numero2;
   printf("\ningrese el primer numero: ");
-  scanf("%f",&numero1);
+  scanf("%f", &numero1);
 
   printf("\ningrese el segundo numero: ");
-  scanf("%f",&numero2);
+  scanf("%f", &numero2);
 
-  printf("\nEl producto de ambos numeros es: %.2f",numero1*numero2);
+  printf("\nEl producto de ambos numeros es: %.2f", numero1 * numero2);
 
-  printf("\nEl cuadrado de %.2f es: %.2f",numero1,numero1*numero1);
+  printf("\nEl cuadrado de %.2f es: %.2f", numero1, numero1 * numero1);
 
-  printf("\nLa decima parte de %.2f es: %.2f\n",numero2,numero2/10);
+  printf("\nLa decima parte de %.2f es: %.2f\n", numero2, numero2 / 10);
 
   return EXIT_SUCCESS;
 }
-
