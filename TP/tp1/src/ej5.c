@@ -1,7 +1,7 @@
 /*
-5. Se registran de los empleados de una empresa Número de legajo, sueldo y sexo
-(1 femenino y 2 masculino). Diseñar un algoritmo que permita informar cuantas
-mujeres ganan más de $ 500000 y cuantos hombres ganan menos de $ 400000
+5. Se registran de los empleados de una empresa Número de legajo, sueldo y sexo (1 
+femenino y 2 masculino). Diseñar un algoritmo que permita informar cuantas mujeres 
+ganan más de $ 500000 y cuantos hombres ganan menos de $ 400000
 */
 
 #include <stdio.h>
@@ -18,7 +18,7 @@ int checkMin(int min, float valor);
 
 /**
  * @brief Chequea si un valor esta por encima del umbral "max"
- *
+ * 
  * @param max umbral a comparar
  * @param valor variable a analizar
  * @return 1 si supera el umbral, 0 si esta por debajo
@@ -28,7 +28,7 @@ int checkMax(int max, float valor);
 /**
  * @brief Verifica que un valor dado se encuentre dentro de cierto
  * rango [min;max]
- *
+ * 
  * @param min umbral minimo
  * @param max umbral maximo
  * @param valor variable a comparar
