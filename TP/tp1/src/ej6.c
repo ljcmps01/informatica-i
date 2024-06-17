@@ -19,10 +19,11 @@ int main() {
   printf("\nIngrese el valor de la fianza: $");
   scanf("%f", &fianza);
 
-  supera_umbral = fianza < UMBRAL;
-
+  // Si el valor de la fianza supera el umbral determinado
+  // por el ejercicio, entonces se usara el valor guardado en el
+  // indice 0 del vector
   printf("\nLa cuota a pagar es: $%.2f",
-         fianza * (float)interes[supera_umbral] / 100);
+         fianza * (float)interes[fianza < UMBRAL] / 100);
 
   return EXIT_SUCCESS;
 }
