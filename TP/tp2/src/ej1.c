@@ -3,7 +3,7 @@
 
 #include "utils.h"
 
-#define NUM 3
+#define NUM 20
 
 int main(){
     int numeros[NUM];
