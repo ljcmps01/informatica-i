@@ -18,17 +18,27 @@ LDFLAGS = -O
 ## Codigo
 TARGET = $(BIN_DIR)/$(SRC)
 SRC_FILE = $(addprefix $(SRC_DIR)/, $(SRC).c)
-OBJ = $(addprefix $(OBJ_DIR)/,$(SRC).o)
 
-SOURCES := $(shell find $(SRC_DIR) -name '*.c')
+## Utilerias
+LIBS_SRC = \
+	src/utils.c
+
+SOURCES = \
+	$(SRC_FILE)\
+	$(LIBS_SRC)\
+
+OBJ_NAMES = $(notdir $(SOURCES:.c=.o))
+OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_NAMES))
+
+# SOURCES := $(shell find $(SRC_DIR) -name '*.c')
 
 # Reglas
-$(TARGET) : $(OBJ)
+$(TARGET): $(OBJ)
 	@mkdir -p $(BIN_DIR)
 	$(CC) $(LDFLAGS) $^ -o $@
 
-$(OBJ) : $(SRC_FILE)
-	@mkdir -p $(OBJ_DIR)
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 
@@ -48,7 +58,7 @@ cppcheck:
 	@$(CPPCHECK) --enable=all --error-exitcode=1\
 	--inline-suppr \
 	--suppress=missingIncludeSystem \
-	$(SOURCES) \
+	$(SOURCES)\
 	--check-config
 
 
