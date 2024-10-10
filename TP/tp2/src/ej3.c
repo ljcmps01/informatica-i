@@ -37,7 +37,7 @@ int main() {
     print_matrix((int *)matriz, COLUMNAS, FILAS);
 
     printf("Ordenado ascendente: \n");
-    col_bubble((int *)matriz, COLUMNAS, FILAS, 4,1);
+    col_bubble((int *)matriz, COLUMNAS, FILAS, COLUMNAS,1);
 
     print_matrix((int *)matriz, COLUMNAS, FILAS);
 
