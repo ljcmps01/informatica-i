@@ -38,13 +38,14 @@ void copiar_array(int *origen, int *destino, int len){
 }
 
 void col_bubble(int *matrix, int columnas, int filas, int columna_orden, int creciente){
-    int aux[columnas];
-    int fila_actual, fila_proxima;
-    columna_orden--;
+    int aux[columnas];  //vector temporal para realizar el swap de filas
+    int fila_actual, fila_proxima; //variables para facilitar la lectura de la logica
+    columna_orden--; //Bajo en 1 el valor de la columna de orden para que coincida con el indice real
 
-    for(int i = 0; i < filas - 1; i++){
+    for(int i = 0; i < filas - 1; i++){ 
         for(int j = 0; j < filas - i - 1; j++)
         {
+            //Obtengo el valor de la columna orden en la fila actual y la fila siguiente para compararlos.
             fila_actual = *(matrix+j*columnas+columna_orden);
             fila_proxima = *(matrix+(j+1)*columnas+columna_orden);
             
