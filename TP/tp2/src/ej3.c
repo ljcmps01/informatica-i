@@ -6,21 +6,40 @@ la columna 4.
 #include <stdio.h>
 #include <stdlib.h>
 
+//Librerias para el llenado automatico de la matriz aleatorio
+#include <math.h>
+#include <time.h>
+
 #include "utils.h"
 
 #define FILAS 5
 #define COLUMNAS 4
 
 int main() {
-    int matriz[FILAS][COLUMNAS], temp;
-
-    // Llenar la matriz
+    int matriz[FILAS][COLUMNAS];
+    
+    // Llenado automatico
+    srand(time(NULL));
     for (int i = 0; i < FILAS; i++) {
         for (int j = 0; j < COLUMNAS; j++) {
-            printf("Ingrese el numero en la posicion [%d][%d]: ", i, j);
-            scanf("%d", &matriz[i][j]);
+            matriz[i][j]=rand() % 10+1;
         }
     }
+
+    // // Llenado de matriz por usuario
+    // for (int i = 0; i < FILAS; i++) {
+    //     for (int j = 0; j < COLUMNAS; j++) {
+    //         printf("Ingrese el numero en la posicion [%d][%d]: ", i, j);
+    //         scanf("%d", &matriz[i][j]);
+    //     }
+    // }
+
+    print_matrix((int *)matriz, COLUMNAS, FILAS);
+
+    printf("Ordenado ascendente: \n");
+    col_bubble((int *)matriz, COLUMNAS, FILAS, 4,1);
+
+    print_matrix((int *)matriz, COLUMNAS, FILAS);
 
     return EXIT_SUCCESS;
 }
