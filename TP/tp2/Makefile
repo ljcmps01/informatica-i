@@ -53,13 +53,9 @@ run: $(TARGET)
 clean:
 	rm -rf $(BUILD_DIR)/*
 
-
 cppcheck: 
-	@$(CPPCHECK) --enable=all --error-exitcode=1\
+	@$(CPPCHECK) --enable=all --error-exitcode=1 \
 	--inline-suppr \
 	--suppress=missingIncludeSystem \
-	$(SOURCES)\
+	$(SRC_DIR)/* \
 	--check-config
-
-
-
