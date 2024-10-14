@@ -23,11 +23,12 @@
 
 #include "utils.h"
 
-#define FILAS 10
+#define FILAS 100
 #define COLUMNAS 4
 
 int main() {
-    int matriz[FILAS][COLUMNAS];
+    int matriz[FILAS][COLUMNAS],legajo,promedio,nueva_nota;
+    char continuar='y';
     
     // Llenado automatico
     srand(time(NULL));
@@ -52,12 +53,42 @@ int main() {
     
     printf("N DE LEGAJO\t1ER TRIMESTRE\t2DO TRIMESTRE\t3ER TRIMESTRE\tPROMEDIO\n");
   
-    print_matrix((int *)matriz, COLUMNAS, FILAS);
+    for (int i = 0; i < FILAS; i++) {
+        print_arr_spanned((int*)(matriz+i),COLUMNAS,2,0); 
+        printf("%.2f\n",promediar_fila((int*)(matriz+i),1,COLUMNAS));
+        // printf("\n");
+    }
 
-    //printf("Ordenado ascendente: \n");
-    //col_bubble((int *)matriz, COLUMNAS, FILAS, COLUMNAS,1);
+    do
+    {
+      printf("Desea modificar una nota? \n");
+      continuar=getchar();
+      if(continuar=='S' || continuar=='s'){
+        printf("Ingrese el legajo a modificar: ");
+        scanf("%d",&legajo);
 
-    //print_matrix((int *)matriz, COLUMNAS, FILAS);
+        if(legajo<FILAS){
+          printf("N DE LEGAJO\t1ER TRIMESTRE\t2DO TRIMESTRE\t3ER TRIMESTRE\tPROMEDIO\n");
+          print_arr((int*)(matriz+legajo-1),COLUMNAS);
+          printf("Ingrese el trimestre a modificar (1 a %d): ",COLUMNAS-1);
+          scanf("%d",&promedio);
+
+          if(promedio>0 && promedio<COLUMNAS-1){
+            printf("Ingrese la nueva nota: ");
+            scanf("%d",&nueva_nota);
+            matriz[legajo-1][promedio]=nueva_nota;
+          }
+        }
+      }
+    } while (continuar=='S' || continuar=='s');
+    
+    printf("N DE LEGAJO\t1ER TRIMESTRE\t2DO TRIMESTRE\t3ER TRIMESTRE\tPROMEDIO\n");
+  
+    for (int i = 0; i < FILAS; i++) {
+        print_arr_spanned((int*)(matriz+i),COLUMNAS,2,0); 
+        printf("%.2f\n",promediar_array((int*)(matriz+i),1,COLUMNAS));
+        // printf("\n");
+    }
 
     return EXIT_SUCCESS;
 }

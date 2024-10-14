@@ -8,6 +8,16 @@
  * @param len cantidad de elementos a mostrar
  */
 void print_arr(int *arr, int len);
+/**
+ * @brief Imprime el array hasta el elemento len y agrega una cantidad
+ * de tabulaciones determinadas entre elementos
+ * 
+ * @param arr puntero al array a imprimir
+ * @param len cantidad de elementos a mostrar
+ * @param indent nuevo de tabulaciones a agregar entre elementos
+ * @param newline Indica si hay que agregar una nueva linea tras imprimir la fila
+ */
+void print_arr_spanned(int *arr, int len, int indent, int newline);
 
 /**
  * @brief Imprime el contenido de la matriz
@@ -38,6 +48,16 @@ void copiar_array(int *origen, int *destino, int len);
  */
 void bubble(int *arr, int len, int creciente);
 
+/**
+ * @brief Calcula y retorna el promedio de un array desde el elemento from
+ * al elemento to
+ * 
+ * @param arr puntero al elemento
+ * @param from indice del elemento de inicio
+ * @param to indice al elemento de final de calculo
+ * @return float 
+ */
+float promediar_fila(int *arr, int from, int to);
 
 /**
  * @brief ordenamiento tipo burbuja para matrices segun columna
