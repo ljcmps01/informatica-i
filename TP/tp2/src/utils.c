@@ -4,10 +4,19 @@
 #include <stdio.h>
 
 void print_arr(int *arr, int len){
+    print_arr_spanned(arr, len, 1,1);
+}
+
+void print_arr_spanned(int *arr, int len, int indent, int newline){
     for(int i = 0; i < len; i++){
-        printf("%d \t", *(arr+i));
+        printf("%d", *(arr+i));
+        for (int j = 0; j < indent; j++)
+        {
+            printf(" \t");
+        }
     }
-    printf("\n");
+    if (newline)
+        printf("\n");
 }
 
 
@@ -29,6 +38,22 @@ void bubble(int *arr, int len, int creciente){
             }
         }
     }
+}
+
+float promediar_fila(int *arr, int from, int to){
+    float promedio = 0;
+    int cantidad = to-from;
+
+    if (cantidad>0)
+    {
+        for (int i = from; i < to; i++)
+        {
+            promedio += arr[i];
+        }
+        promedio /= cantidad;
+    }
+    
+    return promedio;
 }
 
 void copiar_array(int *origen, int *destino, int len){
