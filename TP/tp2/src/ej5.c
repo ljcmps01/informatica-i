@@ -13,7 +13,7 @@ descendente.
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DIAS 5
+#define DIAS 31
 #define COL_MAXIMOS 1
 #define COL_MINIMOS 2
 
