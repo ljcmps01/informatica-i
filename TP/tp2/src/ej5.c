@@ -13,20 +13,23 @@ descendente.
 #include <stdio.h>
 #include <stdlib.h>
 
-//Librerias para el llenado automatico de la matriz aleatorio
-#include <math.h>
-#include <time.h>
-
 #define DIAS 5
+#define COL_MAXIMOS 1
+#define COL_MINIMOS 2
+
+
+int dias[DIAS],dia_mayor,dia_menor, flag_primer_ingreso=1;
+float maximos_minimos_diarios[DIAS][2],\
+    temp_mayor,\
+    temp_menor, \
+    temp_max_prom=0;
+
+char* encabezado = "DIA \tMAXIMO\tMINIMO\n";
+
+void imprimirMatriz ();
+void OrdenarPorMaximoDecreciente();
 
 int main(void){
-    int dias[DIAS],dia_mayor,dia_menor, flag_primer_ingreso=1;
-    float maximos_minimos_diarios[31][2],\
-        temp_mayor,\
-        temp_menor, \
-        temp_max_prom=0;
-
-    char* encabezado = "DIA \tMAXIMO\tMINIMO\n";
 
     for (int i = 0; i < DIAS; i++)
     {
@@ -49,6 +52,8 @@ int main(void){
                 break;
             
         }
+
+        dias[i]=i;
         
         // Cargo los valores iniciales maximos
         if (flag_primer_ingreso)
@@ -83,14 +88,37 @@ int main(void){
     printf("\nDia con mayor temperatura maxima: %d con %.2f grados\n",dia_mayor,temp_mayor);
     printf("Dia con menor temperatura maxima: %d con %.2f grados\n",dia_menor,temp_menor);
     
+    imprimirMatriz();
+    printf("\nORDEN\n");
+    OrdenarPorMaximoDecreciente(COL_MAXIMOS);
+    imprimirMatriz();
+    
+}
+
+void OrdenarPorMaximoDecreciente(){
+    int aux;
+    // ordena en funcion de la cantidad de cada fabrica
+    // us el metodo de vector indice
+    for(int i=0; i<DIAS-1; i++){
+        for(int j=i+1; j<DIAS;j++){
+            if(maximos_minimos_diarios[dias[i]][COL_MAXIMOS-1] < maximos_minimos_diarios[dias[j]][COL_MAXIMOS-1]){
+                aux = dias[i];
+                dias[i]=dias[j];
+                dias[j]= aux;
+            }
+        }
+    }
+}
+
+void imprimirMatriz (){
+        
     printf("%s",encabezado);
 
     for (int i = 0; i < DIAS; i++)
     {
-        printf("%d\t%.2f\t%.2f\n",i+1,\
-                                maximos_minimos_diarios[i][0],\
-                                maximos_minimos_diarios[i][1]\
+        printf("%d\t%.2f\t%.2f\n",dias[i]+1,\
+                                maximos_minimos_diarios[dias[i]][0],\
+                                maximos_minimos_diarios[dias[i]][1]\
         );
     }
-    
 }
