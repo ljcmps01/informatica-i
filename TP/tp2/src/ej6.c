@@ -14,6 +14,7 @@ mercaderías
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #define ARTICULOS 10
 #define SUCURSALES 3
@@ -23,6 +24,8 @@ int opcion=0;
 
 void imprimirMenu(void);
 void cargarStock(void);
+void cargarStockRecursiva();
+
 int main(void){
     while (opcion!=4){
         imprimirMenu();
@@ -34,9 +37,9 @@ int main(void){
             default:
                 printf("Opción inválida\n");
                 break;
+        }
     }
     return EXIT_SUCCESS;
-}
 }
 
 void imprimirMenu(void){
@@ -114,8 +117,8 @@ void cargarStockRecursiva(){
     char respuesta='s';
     printf("Desea agregar stock de otro articulo?\n");
     fflush(stdin);
-    respuesta=getchar();
-    if(respuesta=='s' || respuesta== 'S');
+    scanf(" %c",&respuesta);
+    if(respuesta=='s' || respuesta== 'S')
         cargarStock();
 
 }
