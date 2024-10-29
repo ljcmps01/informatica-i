@@ -28,7 +28,7 @@ int opcion=0;
 int pedirUmbral(int minimo,int maximo);
 void inicializacionStock();
 void imprimirMenu(void);
-void modificarStock(int suma);
+int modificarStock(int suma);
 void modificarStockRecursiva(int suma);
 void mostrarStock(void);
 
@@ -38,7 +38,7 @@ int main(void){
         switch(opcion){
             case 1:
                 printf("===CARGA DE INVENTARIO===");
-                modificarStock(SUMAR);
+                modificarStock(SUMAR)?:printf("OPERACION CANCELADA\n");
                 break;
             case 2:
                 printf("===VENTA DE ARTICULOS===");
@@ -91,67 +91,46 @@ void imprimirMenu(void){
     scanf("%d",&opcion);
 }
 
-void modificarStock(int suma){
-    int deposito, articulo, cantidad, exito=1;
-    while(exito)
+int modificarStock(int suma){
+    int deposito, articulo, cantidad, exito=0;
+
+    printf("\nIngrese el número de deposito: (1/%d o 0 para cancelar)\n", SUCURSALES);
+    deposito=pedirUmbral(0,SUCURSALES);
+    if (deposito==0)
+        return exito;
+
+    printf("\nIngrese el número de articulo: (1/%d  o 0 para cancelar)\n", ARTICULOS);
+    articulo=pedirUmbral(0,ARTICULOS);
+    if (articulo==0)
+        return exito;
+
+    printf("\nStock actual: %d\n",stock[deposito-1][articulo-1]);
+    if (suma)
     {
-        printf("\nIngrese el número de deposito: (1/%d o 0 para cancelar)\n", SUCURSALES);
-        deposito=pedirUmbral(0,SUCURSALES);
-
-        if (deposito==0){
-            exito = 0;
-        }
-        break;
-    }
-
-    while(exito){
-        printf("\nIngrese el número de articulo: (1/%d  o 0 para cancelar)\n", ARTICULOS);
-        articulo=pedirUmbral(0,ARTICULOS);
-
-        if (articulo==0){
-            exito = 0;
-        }
-        break;
-    }
-
-    while(exito){
-        printf("\nStock actual: %d\n",stock[deposito-1][articulo-1]);
-        if (suma)
-        {
-            printf("Ingrese el stock a sumar:  o 0 para cancelar \n");
-            cantidad=pedirUmbral(0,0xFFFF);
-            stock[deposito-1][articulo-1]+=cantidad;
-        }
-
-        else
-        {
-            printf("Ingrese el stock a  restar: o 0 para cancelar \n");
-            cantidad=pedirUmbral(0,stock[deposito-1][articulo-1]);
-            stock[deposito-1][articulo-1]-=cantidad;
-        }
-        
-        
-
-        if (cantidad==0){
-            exito = 0;
-        }
-        break;
-    }
-
-    if (exito)
-    {
-        printf("Se modifico exitosamente %d existencias del articulo %d en el deposito %d\n", \
-                cantidad, \
-                articulo, \
-                deposito);
-        printf("\nStock actualizado: %d\n",stock[deposito-1][articulo-1]);
-        modificarStockRecursiva(suma);
+        printf("Ingrese el stock a sumar:  o 0 para cancelar \n");
+        cantidad=pedirUmbral(0,0xFFFF);
+        stock[deposito-1][articulo-1]+=cantidad;
+        if (cantidad==0)
+            return exito;
     }
     else
     {
-        printf("OPERACION CANCELADA");
+        printf("Ingrese el stock a  restar: o 0 para cancelar \n");
+        cantidad=pedirUmbral(0,stock[deposito-1][articulo-1]);
+        stock[deposito-1][articulo-1]-=cantidad;
+        if (cantidad==0)
+            return exito;
     }
     
+    exito = 1;
+    printf("Se modifico exitosamente %d existencias del articulo %d en el deposito %d\n", \
+            cantidad, \
+            articulo, \
+            deposito);
+    printf("\nStock actualizado: %d\n",stock[deposito-1][articulo-1]);
+    modificarStockRecursiva(suma);
+
+    return exito;
 }
 
 void modificarStockRecursiva(int suma){
@@ -159,7 +138,7 @@ void modificarStockRecursiva(int suma){
     printf("Desea agregar stock de otro articulo?\n");
     fflush(stdin);
     scanf(" %c",&respuesta);
-    if(respuesta=='s' || respuesta== 'S')
+    if(respuesta=='s' || respuesta== 'S' || respuesta== '1')
         modificarStock(suma);
 
 }
