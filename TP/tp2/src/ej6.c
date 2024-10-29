@@ -25,6 +25,8 @@ int opcion=0;
 void imprimirMenu(void);
 void cargarStock(void);
 void cargarStockRecursiva();
+void mostrarStock(void);
+
 
 int main(void){
     while (opcion!=4){
@@ -34,12 +36,30 @@ int main(void){
                 printf("===CARGA DE INVENTARIO===");
                 cargarStock();
                 break;
+            case 2:
+                printf("===VENTA DE ARTICULOS===");
+                break;
+            case 3:
+                mostrarStock();
+                break;
             default:
                 printf("Opción inválida\n");
                 break;
         }
     }
     return EXIT_SUCCESS;
+}
+
+void mostrarStock(){
+    
+    printf("\n===EXISTENCIA DE MERCADERÍAS===\n");
+    printf("ARTICULO SUCURSAL STOCK\n");
+    for (int articulo = 0; articulo < ARTICULOS; articulo++){
+        for(int sucursal=0; sucursal<SUCURSALES; sucursal++){
+            printf("%d\t%d\t%d\n", articulo+1, sucursal+1, stock[sucursal][articulo]);
+        }
+        
+    }
 }
 
 void imprimirMenu(void){
