@@ -86,7 +86,7 @@ int main() {
   
     for (int i = 0; i < FILAS; i++) {
         print_arr_spanned((int*)(matriz+i),COLUMNAS,2,0); 
-        printf("%.2f\n",promediar_array((int*)(matriz+i),1,COLUMNAS));
+        printf("%.2f\n",promediar_fila((int*)(matriz+i),1,COLUMNAS));
         // printf("\n");
     }
 

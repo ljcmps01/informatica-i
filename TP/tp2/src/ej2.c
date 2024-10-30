@@ -16,6 +16,7 @@ int main(){
     int cant_positivos = 0, cant_negativos = 0;
 
     for(int i = 0; i < NUM; i++){
+        //Cargo el numero
         do
         {
             printf("Ingrese un numero (%d/%d): ",i,NUM);
@@ -23,6 +24,8 @@ int main(){
             scanf("%d", &numeros[i]);
         } while (numeros[i]==0);
 
+        // Separo los positivos y negativos en distintos vectores
+        // Con su respectivo contador
         if(numeros[i]>0){
             positivos[cant_positivos] = numeros[i];
             cant_positivos++;
@@ -33,11 +36,16 @@ int main(){
         }
     }
     
+    //Imprimo los numeros ingresados
     print_arr(numeros,NUM);
 
+    //Ordeno los positivos en forma decreciente
+    //Y los imprimo
     bubble(positivos,cant_positivos,0);
     print_arr(positivos,cant_positivos);
 
+    //Ordeno los negativos en forma creciente
+    //Y los imprimo
     bubble(negativos,cant_negativos,1);
     print_arr(negativos,cant_negativos);
 
