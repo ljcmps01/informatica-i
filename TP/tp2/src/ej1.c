@@ -10,6 +10,7 @@ int main(){
     int flag_primer_entrada = 1;
     int max,index_max;
 
+    // Lleno la matriz y analizo en tiempo de carga
     for(int i = 0; i < NUM; i++){
         printf("Ingrese un numero: ");
         scanf("%d", &numeros[i]);

@@ -40,8 +40,8 @@ int main(void){
         temp_max_prom+=maximos_minimos_diarios[i][0]; //Acumulo maximos diarios
 
         maximos_minimos_diarios[i][1]=maximos_minimos_diarios[i][0]+1;
+
         // La temperatura minima debe ser menor a la maxima
-        
         while (1)
         {
             printf("\tTemperatura minima: ");
@@ -52,7 +52,6 @@ int main(void){
                 break;
             
         }
-
         dias[i]=i;
         
         // Cargo los valores iniciales maximos

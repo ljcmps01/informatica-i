@@ -42,7 +42,7 @@ int main(void){
                 break;
             case 2:
                 printf("===VENTA DE ARTICULOS===");
-                modificarStock(RESTAR);
+                modificarStock(RESTAR)?:printf("OPERACION CANCELADA\n");
                 break;
             case 3:
                 mostrarStock();
